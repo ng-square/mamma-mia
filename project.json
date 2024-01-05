@@ -2,7 +2,7 @@
   "name": "pizza",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "pizza",
+  "prefix": "app",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {

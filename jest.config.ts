@@ -20,7 +20,6 @@ export default {
     'jest-preset-angular/build/serializers/html-comment',
   ],
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.[jt]s?(x)',
     '<rootDir>/src/**/*(*.)@(spec|test).[jt]s?(x)',
   ],
 };
