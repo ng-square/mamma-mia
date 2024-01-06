@@ -1,12 +1,15 @@
-import { produce } from 'immer';
-export { Immutable, produce } from 'immer';
+import { DomainError } from './DomainError';
+import { Result } from './Result';
+import { UseCase } from './UseCase';
+import { UseCaseFactory } from './UseCaseFactory';
+import { useModelFactory } from './useModelFactory';
+import { mutable } from './utils';
 
-export const useModelFactory =
-  <Model = unknown, Context = unknown>(options: {
-    defaults: (context?: Context) => Model;
-  }) =>
-  (model?: Partial<Model>, context?: Context): Model => {
-    return produce(options.defaults(context), (draft) => {
-      return { ...draft, ...model };
-    });
-  };
+export {
+  Result,
+  UseCase,
+  DomainError,
+  mutable,
+  useModelFactory,
+  UseCaseFactory,
+};

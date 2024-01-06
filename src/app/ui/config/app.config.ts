@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(),
+    provideBaloiseDesignSystem(),
     provideTransloco({
       config: {
         availableLangs: ['en', 'de'],
@@ -19,6 +20,5 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
-    provideBaloiseDesignSystem(),
   ],
 };

@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture';
+import { Result, UseCase } from '@lib';
 import { RouterPort } from '../ports/RouterPort';
 import { PizzaApiPort } from '../ports/PizzaApiPort';
 import { NotificationPort } from '../ports/NotificationPort';

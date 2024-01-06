@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture'
+import { Result, UseCase } from '@lib'
 import { createCart, addPizza } from '../entities/Cart'
 import { CartItem } from '../entities/CartItem'
 import { Pizza } from '../entities/Pizza'

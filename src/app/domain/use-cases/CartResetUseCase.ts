@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture'
+import { Result, UseCase } from '@lib'
 import { CartItem } from '../entities/CartItem'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

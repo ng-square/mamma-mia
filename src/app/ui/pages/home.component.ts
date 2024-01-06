@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PizzaContainerComponent } from '@ui/components/pizza/pizza-container.component';
+import { CartContainerComponent } from '@ui/components/cart/cart-container.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PizzaContainerComponent, CartContainerComponent],
   template: `
-    <div class="columns my-4">
+    <div class="columns">
       <div class="column is-8">
-        adsf
-        <!-- <app-pizza-container></app-pizza-container> -->
+        <app-pizza-container></app-pizza-container>
       </div>
       <div class="column is-4">
-        qewr
-        <!-- <app-cart-container></app-cart-container> -->
+        <app-cart-container></app-cart-container>
       </div>
     </div>
   `,

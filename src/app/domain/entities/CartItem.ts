@@ -1,4 +1,4 @@
-import { useModelFactory, Immutable } from '@lib';
+import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory';
 
 import { Pizza, usePizzaDefaults } from './Pizza';
 

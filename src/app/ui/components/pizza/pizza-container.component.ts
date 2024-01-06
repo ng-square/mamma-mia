@@ -1,25 +1,33 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { PizzaListComponent } from './pizza-list.component'
-import { CartStore, PizzaStore } from '../../stores'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PizzaStore } from '@interfaces/stores/PizzaStore';
+import { PizzaListComponent } from './pizza-list.component';
+import { CartStore } from '@interfaces/stores/CartStore';
 
 @Component({
   selector: 'app-pizza-container',
   standalone: true,
   imports: [CommonModule, PizzaListComponent],
   template: `
-    <ng-container *ngIf="pizzaStore.state$ | async as state">
-      <app-pizza-list
-        [loading]="state.isLoading && state.items.length === 0"
-        [items]="state.items"
-        (addPizza)="cartStore.addPizza($event)">
-      </app-pizza-list>
-    </ng-container>
+    <app-pizza-list
+      [loading]="pizzaStore.isLoading()"
+      [pizzas]="pizzaStore.items()"
+      (addPizza)="cartStore.addPizza($event)"
+    >
+    </app-pizza-list>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PizzaContainerComponent {
-  constructor(public pizzaStore: PizzaStore, public cartStore: CartStore) {
-    this.pizzaStore.load()
+export class PizzaContainerComponent implements OnInit {
+  pizzaStore = inject(PizzaStore);
+  cartStore = inject(CartStore);
+
+  ngOnInit(): void {
+    this.pizzaStore.load();
   }
 }

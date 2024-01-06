@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture';
+import { Result, UseCase } from '@lib';
 import { PizzaApiPort } from '../ports/PizzaApiPort';
 import { Pizza, createPizza } from '../entities/Pizza';
 
@@ -13,7 +13,7 @@ export class PizzaGetAllUseCase implements UseCase<Context, Pizza[]> {
 
     if (result.isSuccess) {
       const json = await result.value();
-      const pizzas = json.map((item: Pizza) => createPizza(item));
+      const pizzas: Pizza[] = json.map((item: Pizza) => createPizza(item));
       return Result.ok(pizzas);
     } else {
       return Result.fail('Could not load pizzas form server');

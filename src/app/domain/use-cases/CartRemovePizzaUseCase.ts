@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture'
+import { Result, UseCase } from '@lib'
 import { Pizza } from '../entities/Pizza'
 import { createCart, removePizza } from '../entities/Cart'
 import { CartItem } from '../entities/CartItem'
@@ -16,7 +16,7 @@ export class CartRemovePizzaUseCase implements UseCase<Context, CartItem[]> {
     try {
       const cart = createCart({ items })
       const cartWithRemovedPizza = removePizza(cart, pizza)
-
+      
       return Result.ok(cartWithRemovedPizza.items as CartItem[])
     } catch (error) {
       return Result.fail('Could not remove from shopping cart')

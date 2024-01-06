@@ -15,7 +15,9 @@
     "baseUrl": ".",
     "paths": {
       "@lib": ["src/app/lib"],
-      "@domain/*": ["src/app/domain/*"]
+      "@domain/*": ["src/app/domain/*"],
+      "@interfaces/*": ["src/app/interfaces/*"],
+      "@ui/*": ["src/app/ui/*"]
     },
     "useDefineForClassFields": false,
     "esModuleInterop": true,

@@ -1,4 +1,4 @@
-import { Result, UseCase } from '@baloise/web-app-clean-architecture';
+import { Result, UseCase } from '@lib';
 import { RouterPort } from '../ports/RouterPort';
 import { CartItem } from '../entities/CartItem';
 import { Order, useOrderDefaults } from '../entities/Order';

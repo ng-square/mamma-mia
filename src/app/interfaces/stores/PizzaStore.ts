@@ -1,48 +1,47 @@
-import { Injectable } from '@angular/core'
-import { createStore, withProps, select } from '@ngneat/elf'
-import { usePizzaGetAllUseCase } from './factories/usePizzaGetAllUseCase'
-import { Pizza } from '@domain/entities/Pizza'
+import { Injectable, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { createStore, select, setProp, setProps, withProps } from '@ngneat/elf';
+import { Pizza } from '@domain/entities/Pizza';
+import {
+  selectAllEntities,
+  setEntities,
+  withEntities,
+} from '@ngneat/elf-entities';
+import { PizzaGetAllUseCaseFactory } from './factories/PizzaGetAllUseCaseFactory';
 
-export interface PizzaState {
-  items: Pizza[]
-  isLoading: boolean
-  hasFailed: boolean
-}
-
-export const pizzaInitialState: PizzaState = {
-  items: [],
-  isLoading: false,
-  hasFailed: false,
-}
-
-const pizzaStore = createStore(
-  { name: 'pizza' },
-  withProps<PizzaState>(pizzaInitialState),
-)
+type Props = {
+  isLoading: boolean;
+  hasFailed: boolean;
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class PizzaStore {
-  state$ = pizzaStore.pipe(select(state => state))
+  private pizzaGetAllUseCase = inject(PizzaGetAllUseCaseFactory);
+
+  private store = createStore(
+    { name: 'pizza' },
+    withEntities<Pizza>(),
+    withProps<Props>({ isLoading: false, hasFailed: false })
+  );
+
+  isLoading = toSignal(this.store.pipe(select((state) => state.isLoading)));
+  hasFailed = toSignal(this.store.pipe(select((state) => state.hasFailed)));
+  items = toSignal(this.store.pipe(selectAllEntities()));
 
   async load() {
-    pizzaStore.update(state => ({ ...state, isLoading: true, hasFailed: true }))
-    const useCase = usePizzaGetAllUseCase()
-    const result = await useCase.execute()
+    this.store.update(setProps(() => ({ isLoading: true, hasFailed: false })));
+
+    const useCase = this.pizzaGetAllUseCase.create();
+    const result = await useCase.execute();
 
     if (result.isSuccess) {
-      pizzaStore.update(() => ({
-        items: result.value(),
-        isLoading: false,
-        hasFailed: false,
-      }))
+      this.store.update(setEntities(result.value()));
     } else {
-      pizzaStore.update(state => ({
-        ...state,
-        isLoading: false,
-        hasFailed: true,
-      }))
+      this.store.update(setProp('hasFailed', true));
     }
+
+    this.store.update(setProp('isLoading', false));
   }
 }

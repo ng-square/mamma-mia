@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Router } from '@angular/router'
 import { RouterPort } from '@domain/ports/RouterPort'
 
@@ -6,7 +6,7 @@ import { RouterPort } from '@domain/ports/RouterPort'
   providedIn: 'root',
 })
 export class RouterAdapter implements RouterPort {
-  constructor(private readonly router: Router) {}
+  private router = inject(Router)
 
   async goToHome() {
     await this.router.navigateByUrl('/')

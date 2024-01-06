@@ -1,4 +1,4 @@
-import { Result } from '@baloise/web-app-clean-architecture'
+import { Result } from '@lib'
 import { Order } from '../entities/Order'
 import { CartItem } from '../entities/CartItem'
 import { Pizza } from '../entities/Pizza'

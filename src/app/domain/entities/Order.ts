@@ -1,4 +1,4 @@
-import { useModelFactory, Immutable } from '@lib';
+import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory';
 
 import { Address, useAddressDefaults } from './Address';
 import { Contact, useContactDefaults } from './Contact';

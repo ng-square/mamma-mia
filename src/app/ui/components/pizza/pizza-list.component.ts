@@ -4,30 +4,38 @@ import {
   EventEmitter,
   Input,
   Output,
-} from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { Pizza } from 'src/app/core/models/Pizza'
-import { BalSpinnerModule } from '@baloise/design-system-components-angular'
-import { PizzaCardComponent } from './pizza-card.component'
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Pizza } from '@domain/entities/Pizza';
+import {
+  BalSpinner,
+  BalText,
+} from '@baloise/design-system-components-angular/standalone';
+import { PizzaCardComponent } from './pizza-card.component';
 
 @Component({
   selector: 'app-pizza-list',
   standalone: true,
-  imports: [CommonModule, PizzaCardComponent, BalSpinnerModule],
+  imports: [CommonModule, BalSpinner, BalText, PizzaCardComponent],
   template: `
+    @if(loading) {
     <div
-      *ngIf="loading"
-      class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column mt-8">
+      class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column"
+    >
       <bal-spinner></bal-spinner>
-      <p class="is-lead has-text-centered has-text-hint py-4">Loading</p>
+      <bal-text size="lead">Loading</bal-text>
     </div>
-    <div v-else>
+    } @else {
+    <div class="columns is-multiline">
       <app-pizza-card
-        *ngFor="let item of items"
-        [pizza]="item"
-        (addPizza)="addPizza.emit($event)">
+        class="column is-half"
+        *ngFor="let pizza of pizzas"
+        [pizza]="pizza"
+        (addPizza)="addPizza.emit($event)"
+      >
       </app-pizza-card>
     </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,13 +43,13 @@ export class PizzaListComponent {
   /**
    * List of pizzas to display on the home screen.
    */
-  @Input() items: Pizza[] | null = []
+  @Input() pizzas: Pizza[] | undefined = [];
   /**
    * If `true` a spinner is shown.
    */
-  @Input() loading: boolean | null = false
+  @Input() loading: boolean | undefined = false;
   /**
    * Event to add a pizza to the cart list.
    */
-  @Output() addPizza = new EventEmitter<Pizza>()
+  @Output() addPizza = new EventEmitter<Pizza>();
 }

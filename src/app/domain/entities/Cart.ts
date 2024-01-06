@@ -1,8 +1,11 @@
-import { produce, useModelFactory, Immutable } from '@lib';
+import {
+  produce,
+  useModelFactory,
+  Immutable,
+} from 'src/app/lib/useModelFactory';
 
 import { calculatePrice, CartItem, createCartItem } from './CartItem';
 import { MaxShoppingCartItemAmountError } from './error/MaxShoppingCartItemAmountError';
-import { MinShoppingCartItemAmountError } from './error/MinShoppingCartItemAmountError';
 import { arePizzasEqual, Pizza } from './Pizza';
 
 /**
@@ -63,11 +66,12 @@ export function removePizza(cart: Cart, pizza: Pizza): Cart {
 
     const { amount } = draft.items[index];
     const newAmount = amount - 1;
-    if (newAmount < 0) {
-      throw new MinShoppingCartItemAmountError();
-    }
 
-    draft.items[index] = createCartItem({ pizza, amount: newAmount });
+    if (newAmount < 0) {
+      draft.items.splice(index, 1);
+    } else {
+      draft.items[index] = createCartItem({ pizza, amount: newAmount });
+    }
   });
 }
 

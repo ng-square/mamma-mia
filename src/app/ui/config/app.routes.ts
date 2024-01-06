@@ -7,4 +7,10 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('../pages/home.component').then((m) => m.HomeComponent),
   },
+  {
+    path: 'checkout',
+    title: 'Checkout',
+    loadComponent: () =>
+      import('../pages/checkout.component').then((m) => m.CheckoutComponent),
+  },
 ];
