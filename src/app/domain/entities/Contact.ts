@@ -1,4 +1,4 @@
-import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory';
+import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory'
 
 /**
  * DOMAIN MODEL

@@ -1,15 +1,15 @@
-import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory';
+import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory'
 
 /**
  * DOMAIN MODEL
  * --------------------------------
  */
 export type Address = Immutable<{
-  postalCode: string;
-  city: string;
-  street: string;
-  streetNumber: string;
-}>;
+  postalCode: string
+  city: string
+  street: string
+  streetNumber: string
+}>
 
 /**
  * DOMAIN MODEL - DEFAULTS
@@ -21,7 +21,7 @@ export function useAddressDefaults(): Address {
     city: '',
     street: '',
     streetNumber: '',
-  };
+  }
 }
 
 /**
@@ -30,4 +30,4 @@ export function useAddressDefaults(): Address {
  */
 export const createAddress = useModelFactory<Address>({
   defaults: useAddressDefaults,
-});
+})

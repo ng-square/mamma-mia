@@ -4,25 +4,20 @@ import {
   EventEmitter,
   Input,
   Output,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartListComponent } from './cart-list.component';
+} from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { CartListComponent } from './cart-list.component'
 import {
   BalButtonBundle,
   BalCardBundle,
-} from '@baloise/design-system-components-angular/standalone';
-import { CartItem } from '@domain/entities/CartItem';
-import { Pizza } from '@domain/entities/Pizza';
+} from '@baloise/design-system-components-angular/standalone'
+import { CartItem } from '@domain/entities/CartItem'
+import { Pizza } from '@domain/entities/Pizza'
 
 @Component({
   selector: 'app-cart-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    CartListComponent,
-    BalCardBundle,
-    BalButtonBundle,
-  ],
+  imports: [CommonModule, CartListComponent, BalCardBundle, BalButtonBundle],
   template: `
     <bal-card>
       <bal-card-content>
@@ -39,7 +34,7 @@ import { Pizza } from '@domain/entities/Pizza';
         <div class="is-flex my-small" *ngIf="!isEmpty()">
           <p class="is-flex-grow-1 title is-size-medium">Total</p>
           <p class="has-text-right has-text-weight-bold">
-            {{ total | currency : 'CHF ' }}
+            {{ total | currency: 'CHF ' }}
           </p>
         </div>
         <bal-button
@@ -60,35 +55,35 @@ export class CartCardComponent {
   /**
    * List of the current selected cart items.
    */
-  @Input() items: CartItem[] = [];
+  @Input() items: CartItem[] = []
   /**
    * Total price of all the selected cart items.
    */
-  @Input() total = 0;
+  @Input() total = 0
   /**
    * Amount of pizzas in the cart.
    */
-  @Input() amount = 0;
+  @Input() amount = 0
   /**
    * If `true` the cart items can only be viewed
    * and not changed anymore.
    */
-  @Input() readonly = false;
+  @Input() readonly = false
   /**
    * Event to add a pizza to the cart list.
    */
-  @Output() addPizza = new EventEmitter<Pizza>();
+  @Output() addPizza = new EventEmitter<Pizza>()
   /**
    * Event to remove a pizza to the cart list.
    */
-  @Output() removePizza = new EventEmitter<Pizza>();
+  @Output() removePizza = new EventEmitter<Pizza>()
   /**
    * Event to checkout the current cart items and
    * to proceed to finish the order.
    */
-  @Output() checkout = new EventEmitter<void>();
+  @Output() checkout = new EventEmitter<void>()
 
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.items.length === 0
   }
 }

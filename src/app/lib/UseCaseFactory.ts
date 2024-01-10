@@ -1,3 +1,3 @@
 export type UseCaseFactory<TUseCase> = {
-  create(): TUseCase;
-};
+  create(): TUseCase
+}

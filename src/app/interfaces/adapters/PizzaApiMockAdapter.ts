@@ -1,24 +1,24 @@
-import { Result } from '@lib';
-import { Pizza } from '@domain/entities/Pizza';
-import { PizzaApiPort, PizzaApiCreateDto } from '@domain/ports/PizzaApiPort';
+import { Result } from '@lib'
+import { Pizza } from '@domain/entities/Pizza'
+import { PizzaApiPort, PizzaApiCreateDto } from '@domain/ports/PizzaApiPort'
 
 // https://mamma-mia-pizzas.vercel.app/api/
 export class PizzaApiMockAdapter implements PizzaApiPort {
   async getAll() {
-    await this.wait();
-    return Result.ok(PizzaApiMockAdapter.pizzas);
+    await this.wait()
+    return Result.ok(PizzaApiMockAdapter.pizzas)
   }
 
   async create(dto: PizzaApiCreateDto) {
-    await this.wait();
+    await this.wait()
     if (dto) {
-      return Result.ok();
+      return Result.ok()
     }
-    return Result.fail('Empty body');
+    return Result.fail('Empty body')
   }
 
   private wait() {
-    return new Promise((resolve) => setTimeout(() => resolve(undefined), 1200));
+    return new Promise((resolve) => setTimeout(() => resolve(undefined), 1200))
   }
 
   static pizzas: Pizza[] = [
@@ -52,5 +52,5 @@ export class PizzaApiMockAdapter implements PizzaApiPort {
       price: 20,
       image: 'src/app/assets/Margherita.jpeg',
     },
-  ];
+  ]
 }

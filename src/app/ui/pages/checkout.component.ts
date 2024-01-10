@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CartContainerComponent } from '../components/cart/cart-container.component';
-import { CheckoutContainerComponent } from '../components/checkout/checkout-container.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { CartContainerComponent } from '../components/cart/cart-container.component'
+import { CheckoutContainerComponent } from '../components/checkout/checkout-container.component'
 
 @Component({
   selector: 'app-checkout',

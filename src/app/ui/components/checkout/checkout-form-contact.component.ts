@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BalFormBundle } from '@baloise/design-system-components-angular/standalone';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { BalFormBundle } from '@baloise/design-system-components-angular/standalone'
 
 @Component({
   selector: 'app-checkout-form-contact',
@@ -78,12 +78,12 @@ import { BalFormBundle } from '@baloise/design-system-components-angular/standal
 })
 export class CheckoutFormContactComponent {
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('formGroup') contactFormGroup!: FormGroup;
+  @Input('formGroup') contactFormGroup!: FormGroup
 
   get isFirstNameInvalid() {
     return (
       this.contactFormGroup.get('firstName')?.errors !== null &&
       this.contactFormGroup.get('firstName')?.dirty
-    );
+    )
   }
 }

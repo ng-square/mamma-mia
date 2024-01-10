@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BalFormBundle } from '@baloise/design-system-components-angular/standalone';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { BalFormBundle } from '@baloise/design-system-components-angular/standalone'
 
 @Component({
   selector: 'app-checkout-form-address',
@@ -77,5 +77,5 @@ import { BalFormBundle } from '@baloise/design-system-components-angular/standal
 })
 export class CheckoutFormAddressComponent {
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('formGroup') addressFormGroup!: FormGroup;
+  @Input('formGroup') addressFormGroup!: FormGroup
 }

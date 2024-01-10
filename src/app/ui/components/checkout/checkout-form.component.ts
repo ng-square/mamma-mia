@@ -5,18 +5,21 @@ import {
   Input,
   OnInit,
   Output,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CheckoutFormContactComponent } from './checkout-form-contact.component';
-import { CheckoutFormAddressComponent } from './checkout-form-address.component';
+} from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { CheckoutFormContactComponent } from './checkout-form-contact.component'
+import { CheckoutFormAddressComponent } from './checkout-form-address.component'
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from '@angular/forms';
-import { Order, createOrder, useOrderDefaults } from '@domain/entities/Order';
-import { BalButtonBundle, BalCardBundle } from '@baloise/design-system-components-angular/standalone';
+} from '@angular/forms'
+import { Order, createOrder, useOrderDefaults } from '@domain/entities/Order'
+import {
+  BalButtonBundle,
+  BalCardBundle,
+} from '@baloise/design-system-components-angular/standalone'
 
 @Component({
   selector: 'app-checkout-form',
@@ -60,30 +63,30 @@ export class CheckoutFormComponent implements OnInit {
    * Domain object for the order. Used to initialize
    * the form value.
    */
-  @Input() order: Order = useOrderDefaults();
+  @Input() order: Order = useOrderDefaults()
   /**
    * If `true` the form is disabled and the button is
    * in a loading state.
    */
-  @Input() loading = false;
+  @Input() loading = false
   /**
    * Event to submit the order to the backend.
    */
-  @Output() submitOrder = new EventEmitter<Order>();
+  @Output() submitOrder = new EventEmitter<Order>()
   /**
    * Event to navigate back to the home screen.
    */
-  @Output() backToHome = new EventEmitter<void>();
+  @Output() backToHome = new EventEmitter<void>()
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form.get('contact.gender')?.valueChanges.subscribe((it) => {
-      console.error('valueChanges', it);
-    });
+      console.error('valueChanges', it)
+    })
     this.form.get('contact.gender')?.statusChanges.subscribe((it) => {
-      console.warn('statusChanges', it);
-    });
+      console.warn('statusChanges', it)
+    })
   }
 
   form = this.fb.group({
@@ -99,17 +102,17 @@ export class CheckoutFormComponent implements OnInit {
       postalCode: ['', [Validators.required, Validators.minLength(4)]],
       city: ['', Validators.required],
     }),
-  });
+  })
 
   get contactFormGroup() {
-    return this.form.get('contact') as FormGroup;
+    return this.form.get('contact') as FormGroup
   }
 
   get deliveryAddressFormGroup() {
-    return this.form.get('deliveryAddress') as FormGroup;
+    return this.form.get('deliveryAddress') as FormGroup
   }
 
   onSubmit() {
-    this.submitOrder.emit(createOrder(this.form.value as Order));
+    this.submitOrder.emit(createOrder(this.form.value as Order))
   }
 }

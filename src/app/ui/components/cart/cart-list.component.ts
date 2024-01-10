@@ -21,7 +21,8 @@ import { Pizza } from '@domain/entities/Pizza'
         [item]="item"
         [readonly]="readonly"
         (addPizza)="addPizza.emit($event)"
-        (removePizza)="removePizza.emit($event)">
+        (removePizza)="removePizza.emit($event)"
+      >
       </app-cart-list-item>
     </div>
   `,

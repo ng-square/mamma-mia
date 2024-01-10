@@ -1,16 +1,16 @@
-import { Result, UseCase } from '@lib';
-import { RouterPort } from '../ports/RouterPort';
-import { CartItem } from '../entities/CartItem';
-import { Order, useOrderDefaults } from '../entities/Order';
-import { countItems, createCart } from '../entities/Cart';
-import { EmptyShoppingCartError } from '../entities/error/EmptyShoppingCartError';
+import { Result, UseCase } from '@lib'
+import { RouterPort } from '../ports/RouterPort'
+import { CartItem } from '../entities/CartItem'
+import { Order, useOrderDefaults } from '../entities/Order'
+import { countItems, createCart } from '../entities/Cart'
+import { EmptyShoppingCartError } from '../entities/error/EmptyShoppingCartError'
 
 interface Context {
-  items: CartItem[];
+  items: CartItem[]
 }
 
 interface Value {
-  order: Order;
+  order: Order
 }
 
 export class OrderCheckoutUseCase implements UseCase<Context, Value> {
@@ -18,19 +18,19 @@ export class OrderCheckoutUseCase implements UseCase<Context, Value> {
 
   async execute({ items }: Context): Promise<Result<Value, string>> {
     try {
-      const cart = createCart({ items });
-      const amount = countItems(cart);
+      const cart = createCart({ items })
+      const amount = countItems(cart)
 
       if (amount <= 0) {
-        throw new EmptyShoppingCartError();
+        throw new EmptyShoppingCartError()
       }
 
-      const order = useOrderDefaults();
-      this.router.goToCheckout();
-      return Result.ok({ order });
+      const order = useOrderDefaults()
+      this.router.goToCheckout()
+      return Result.ok({ order })
     } catch (error) {
-      console.error(error);
-      return Result.fail('Could not checkout current shopping cart');
+      console.error(error)
+      return Result.fail('Could not checkout current shopping cart')
     }
   }
 }

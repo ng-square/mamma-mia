@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PizzaContainerComponent } from '@ui/components/pizza/pizza-container.component';
-import { CartContainerComponent } from '@ui/components/cart/cart-container.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { PizzaContainerComponent } from '@ui/components/pizza/pizza-container.component'
+import { CartContainerComponent } from '@ui/components/cart/cart-container.component'
 
 @Component({
   selector: 'app-home',

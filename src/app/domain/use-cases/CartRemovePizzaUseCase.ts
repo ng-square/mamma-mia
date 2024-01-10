@@ -16,7 +16,7 @@ export class CartRemovePizzaUseCase implements UseCase<Context, CartItem[]> {
     try {
       const cart = createCart({ items })
       const cartWithRemovedPizza = removePizza(cart, pizza)
-      
+
       return Result.ok(cartWithRemovedPizza.items as CartItem[])
     } catch (error) {
       return Result.fail('Could not remove from shopping cart')

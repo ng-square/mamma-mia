@@ -1,4 +1,4 @@
-import { DomainError } from "@lib";
+import { DomainError } from '@lib'
 
 export class EmptyShoppingCartError extends DomainError {
   constructor(...params: unknown[]) {

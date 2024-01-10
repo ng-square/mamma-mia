@@ -1,5 +1,5 @@
-import { Result } from './Result';
+import { Result } from './Result'
 
 export interface UseCase<Context, TValue, TError = string> {
-  execute(context: Context): Promise<Result<TValue, TError>>;
+  execute(context: Context): Promise<Result<TValue, TError>>
 }

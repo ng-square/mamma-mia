@@ -4,29 +4,23 @@ import {
   Component,
   OnInit,
   inject,
-} from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+} from '@angular/core'
+import { NavigationEnd, Router, RouterModule } from '@angular/router'
 import {
   BalApp,
   BalFooter,
   BalNavbarBundle,
   BalTabsBundle,
-} from '@baloise/design-system-components-angular/standalone';
-import { RouterAdapter } from '@interfaces/adapters/RouterAdapter';
-import { I18nStore } from '@interfaces/stores/I18nStore';
-import { filter } from 'rxjs';
+} from '@baloise/design-system-components-angular/standalone'
+import { RouterAdapter } from '@interfaces/adapters/RouterAdapter'
+import { I18nStore } from '@interfaces/stores/I18nStore'
+import { filter } from 'rxjs'
 
-type TabValue = 'home' | 'checkout';
+type TabValue = 'home' | 'checkout'
 
 @Component({
   standalone: true,
-  imports: [
-    RouterModule,
-    BalApp,
-    BalFooter,
-    BalNavbarBundle,
-    BalTabsBundle,
-  ],
+  imports: [RouterModule, BalApp, BalFooter, BalNavbarBundle, BalTabsBundle],
   selector: 'app-root',
   template: `<bal-app class="has-sticky-footer">
     <header>
@@ -57,35 +51,35 @@ type TabValue = 'home' | 'checkout';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  private i18nStore = inject(I18nStore);
-  private router = inject(Router);
-  private routerAdapter = inject(RouterAdapter);
+  private i18nStore = inject(I18nStore)
+  private router = inject(Router)
+  private routerAdapter = inject(RouterAdapter)
 
-  tabValue: TabValue = 'home';
+  tabValue: TabValue = 'home'
 
   ngOnInit(): void {
-    this.i18nStore.setup();
+    this.i18nStore.setup()
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
-        const { url } = event as NavigationEnd;
+        const { url } = event as NavigationEnd
         if (url === '/') {
-          this.tabValue = 'home';
+          this.tabValue = 'home'
         } else {
-          this.tabValue = 'checkout';
+          this.tabValue = 'checkout'
         }
-      });
+      })
   }
 
   tabChanged(tabEvent: BalEvents.BalTabsChange) {
-    const newTabValue = tabEvent.detail as TabValue;
+    const newTabValue = tabEvent.detail as TabValue
     if (this.tabValue !== newTabValue) {
       if (newTabValue === 'home') {
-        this.routerAdapter.goToHome();
+        this.routerAdapter.goToHome()
       }
       if (newTabValue === 'checkout') {
-        this.routerAdapter.goToCheckout();
+        this.routerAdapter.goToCheckout()
       }
     }
   }

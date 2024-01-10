@@ -3,11 +3,11 @@ import {
   Component,
   Input,
   inject,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartCardComponent } from './cart-card.component';
-import { CartStore } from '@interfaces/stores/CartStore';
-import { CheckoutStore } from '@interfaces/stores/CheckoutStore';
+} from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { CartCardComponent } from './cart-card.component'
+import { CartStore } from '@interfaces/stores/CartStore'
+import { CheckoutStore } from '@interfaces/stores/CheckoutStore'
 
 @Component({
   selector: 'app-cart-container',
@@ -28,16 +28,16 @@ import { CheckoutStore } from '@interfaces/stores/CheckoutStore';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartContainerComponent {
-  cartStore = inject(CartStore);
-  checkoutStore = inject(CheckoutStore);
+  cartStore = inject(CartStore)
+  checkoutStore = inject(CheckoutStore)
 
   /**
    * If `true` the cart items can only be viewed
    * and not changed anymore.
    */
-  @Input() readonly = false;
+  @Input() readonly = false
 
   checkout() {
-    this.checkoutStore.checkout(this.cartStore.items());
+    this.checkoutStore.checkout(this.cartStore.items())
   }
 }

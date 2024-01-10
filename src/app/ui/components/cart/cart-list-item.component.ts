@@ -4,19 +4,19 @@ import {
   EventEmitter,
   Input,
   Output,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
+} from '@angular/core'
+import { CommonModule } from '@angular/common'
 import {
   BalInputStepper,
   BalTypographyBundle,
-} from '@baloise/design-system-components-angular/standalone';
-import { Pizza } from '@domain/entities/Pizza';
+} from '@baloise/design-system-components-angular/standalone'
+import { Pizza } from '@domain/entities/Pizza'
 import {
   CartItem,
   calculatePrice,
   createCartItem,
   useCartItemDefaults,
-} from '@domain/entities/CartItem';
+} from '@domain/entities/CartItem'
 
 @Component({
   selector: 'app-cart-list-item',
@@ -46,7 +46,7 @@ import {
         x{{ item.amount }}
       </bal-text>
       <bal-text bold space="none" class="has-text-right" style="width: 120px;">
-        {{ price() | currency : 'CHF ' }}
+        {{ price() | currency: 'CHF ' }}
       </bal-text>
     </div>
   `,
@@ -57,22 +57,22 @@ export class CartListItemComponent {
    * Cart list item has a pizza and the selected
    * amount of it.
    */
-  @Input() item: CartItem = useCartItemDefaults();
+  @Input() item: CartItem = useCartItemDefaults()
   /**
    * If `true` the cart items can only be viewed
    * and not changed anymore.
    */
-  @Input() readonly = false;
+  @Input() readonly = false
   /**
    * Event to add a pizza to the cart list.
    */
-  @Output() addPizza = new EventEmitter<Pizza>();
+  @Output() addPizza = new EventEmitter<Pizza>()
   /**
    * Event to remove a pizza to the cart list.
    */
-  @Output() removePizza = new EventEmitter<Pizza>();
+  @Output() removePizza = new EventEmitter<Pizza>()
 
   price(): number {
-    return calculatePrice(createCartItem(this.item));
+    return calculatePrice(createCartItem(this.item))
   }
 }

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export class DomainError extends Error {
   constructor(name: string, ...params: any[]) {
-    super(...params);
+    super(...params)
 
     if ((Error as any).captureStackTrace) {
-      (Error as any).captureStackTrace(this, DomainError);
+      ;(Error as any).captureStackTrace(this, DomainError)
     }
 
-    this.name = name;
+    this.name = name
   }
 }

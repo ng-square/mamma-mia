@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CheckoutFormComponent } from './checkout-form.component';
-import { Order } from '@domain/entities/Order';
-import { RouterAdapter } from '@interfaces/adapters/RouterAdapter';
-import { CartStore } from '@interfaces/stores/CartStore';
-import { CheckoutStore } from '@interfaces/stores/CheckoutStore';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { CheckoutFormComponent } from './checkout-form.component'
+import { Order } from '@domain/entities/Order'
+import { RouterAdapter } from '@interfaces/adapters/RouterAdapter'
+import { CartStore } from '@interfaces/stores/CartStore'
+import { CheckoutStore } from '@interfaces/stores/CheckoutStore'
 
 @Component({
   selector: 'app-checkout-container',
@@ -22,11 +22,11 @@ import { CheckoutStore } from '@interfaces/stores/CheckoutStore';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckoutContainerComponent {
-  routerAdapter = inject(RouterAdapter);
-  cartStore = inject(CartStore);
-  checkoutStore = inject(CheckoutStore);
+  routerAdapter = inject(RouterAdapter)
+  cartStore = inject(CartStore)
+  checkoutStore = inject(CheckoutStore)
 
   submitOrder(order: Order) {
-    this.checkoutStore.submit(order, this.cartStore.items());
+    this.checkoutStore.submit(order, this.cartStore.items())
   }
 }

@@ -1,16 +1,16 @@
-import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory';
+import { useModelFactory, Immutable } from 'src/app/lib/useModelFactory'
 
 /**
  * DOMAIN MODEL
  * --------------------------------
  */
 export type Pizza = Immutable<{
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-}>;
+  id: number
+  name: string
+  description: string
+  price: number
+  image: string
+}>
 
 /**
  * DOMAIN MODEL - DEFAULTS
@@ -22,7 +22,7 @@ export const usePizzaDefaults = (): Pizza => ({
   description: '',
   price: 0,
   image: '',
-});
+})
 
 /**
  * DOMAIN MODEL - CONSTRUCTOR
@@ -30,12 +30,12 @@ export const usePizzaDefaults = (): Pizza => ({
  */
 export const createPizza = useModelFactory<Pizza>({
   defaults: usePizzaDefaults,
-});
+})
 
 /**
  * DOMAIN MODEL - METHODS
  * --------------------------------
  */
 export function arePizzasEqual(pizza: Pizza, other: Pizza) {
-  return pizza.id === other.id;
+  return pizza.id === other.id
 }
